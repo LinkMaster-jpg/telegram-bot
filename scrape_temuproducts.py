@@ -14,3 +14,10 @@ def scrape_temuproduct_links():
                 links.append(href)
 
     return links
+for a in soup.find_all("a", href=True):
+    href = a["href"]
+    if "/goods.html" in href and href.startswith("http"):
+        if href not in links:
+            links.append(href)
+
+print("נמצאו קישורים:", links)
