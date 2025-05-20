@@ -1,6 +1,3 @@
-import requests
-from bs4 import BeautifulSoup
-
 def scrape_temuproduct_links():
     url = "https://temu.to/k/e6xiugmdprq"
     response = requests.get(url)
@@ -9,15 +6,9 @@ def scrape_temuproduct_links():
 
     for a in soup.find_all("a", href=True):
         href = a["href"]
-        if "/goods.html?" in href and href.startswith("http"):
+        if "/goods.html" in href and href.startswith("http"):
             if href not in links:
                 links.append(href)
 
+    print("נמצאו קישורים:", links)
     return links
-for a in soup.find_all("a", href=True):
-    href = a["href"]
-    if "/goods.html" in href and href.startswith("http"):
-        if href not in links:
-            links.append(href)
-
-print("נמצאו קישורים:", links)
